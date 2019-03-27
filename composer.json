@@ -12,5 +12,15 @@
         "psr-4": {
             "Dvs360\\Form\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dvs360\\Form\\FormServiceProvider"
+            ],
+            "aliases": {
+                "Form": "Dvs360\\Form\\Form"
+            }
+        }
     }
 }
