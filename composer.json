@@ -10,7 +10,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Dvs360\\Form\\": "src/"
+            "Dvs360\\Form\\": "src/",
+            "Dvs360\\Form\\Traits\\": "src/traits/"
         }
     },
     "extra": {
@@ -19,7 +20,7 @@
                 "Dvs360\\Form\\FormServiceProvider"
             ],
             "aliases": {
-                "FormComponent": "Dvs360\\Form\\Form"
+                "FormComponent": "Facades\\Dvs360\\Form\\Form"
             }
         }
     }
