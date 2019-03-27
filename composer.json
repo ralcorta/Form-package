@@ -1,0 +1,16 @@
+{
+    "name": "dvs360/form",
+    "description": "Form generator",
+    "authors": [
+        {
+            "name": "Rodrigo",
+            "email": "rodrigovictoralcorta@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dvs360\\Form\\": "src/"
+        }
+    }
+}
