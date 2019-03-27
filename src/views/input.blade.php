@@ -1,5 +1,5 @@
 <input 
-type="{{ $type }}" 
+type="{{ $type ?? 'text' }}" 
 id="{{ $id ?? '' }}"
 name="{{ $name }}"
 class="form-control"
