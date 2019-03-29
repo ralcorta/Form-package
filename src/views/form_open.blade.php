@@ -1,6 +1,6 @@
 <form
     action="{{ $action ?? '' }}"
-    method="{{ $method ?? 'GET' }}"
+    method="@isset($method){{ $method['type'] }}@endisset"
     @isset($accept_charset)
     accept-charset="{{ $accept_charset }}""
     @endisset()
@@ -20,3 +20,10 @@
     novalidate
     @endif
     >
+@if(isset($method) && isset($method['facade'])) 
+    <input type="hidden" name="_method" value="{{ $method['facade'] }}">
+@endif
+
+@if(isset($method) && $method['type'] != 'GET') 
+@csrf
+@endif
