@@ -2,7 +2,7 @@
 type="{{ $type ?? 'text' }}" 
 id="{{ $id ?? '' }}"
 name="{{ $name }}"
-class="form-control"
+class="form-control {{ $class ?? '' }}"
 value="{{ $value ?? ''}}"
 placeholder="{{ $placeholder ?? '' }}"
 @isset($maxlength)
