@@ -16,7 +16,7 @@ class FormServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/views', 'form');
         
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/dvs360/form'),
+            __DIR__.'/views' => base_path('resources/views/vendor/dvs360/form'),
         ]);
     }
     
