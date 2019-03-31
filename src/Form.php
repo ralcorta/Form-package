@@ -104,7 +104,7 @@ class Form
      */
     public function radio(array $parameters, $errors = null) 
     {
-        return $this->getComponent('radio_checkbox', $parameters + [ 'type' => 'radio'], $errors);
+        return $this->getComponent('radio_checkbox', array_merge($parameters, ['type' => 'radio']), $errors);
     } 
 
     /**
@@ -117,7 +117,7 @@ class Form
      */
     public function checkbox(array $parameters, $errors = null) 
     {
-        return $this->getComponent('radio_checkbox', $parameters  + [ 'type' => 'checkbox'], $errors);
+        return $this->getComponent('radio_checkbox', array_merge($parameters , ['type' => 'checkbox']), $errors);
     } 
 
     /**
@@ -140,9 +140,22 @@ class Form
      * 
      * @return Illuminate\Support\View
      */
+    public function submit(array $parameters)
+    {
+        return $this->button(array_merge($parameters, ['type' => 'submit' ]));
+    }
+
+    /**
+     * Create a form text input
+     *
+     * @param array $parameters
+     * @param [type] $errors
+     * 
+     * @return Illuminate\Support\View
+     */
     public function text(array $parameters, $errors = null)
     {
-        return $this->input($parameters + [ 'type' => 'text' ], $errors);
+        return $this->input(array_merge($parameters, ['type' => 'text' ]), $errors);
     }
 
     /**
@@ -155,7 +168,7 @@ class Form
      */
     public function password(array $parameters, $errors = null)
     {
-        return $this->input($parameters + [ 'type' => 'password' ], $errors);
+        return $this->input(array_merge($parameters, ['type' => 'password' ]), $errors);
     }
 
     /**
@@ -168,7 +181,7 @@ class Form
      */
     public function hidden(array $parameters, $errors = null)
     {
-        return $this->input($parameters + [ 'type' => 'hidden' ], $errors);
+        return $this->input(array_merge($parameters, ['type' => 'hidden' ]), $errors);
     }
 
     /**
@@ -181,7 +194,7 @@ class Form
      */
     public function email(array $parameters, $errors = null)
     {
-        return $this->input($parameters + [ 'type' => 'email' ], $errors);
+        return $this->input(array_merge($parameters, ['type' => 'email' ]), $errors);
     }
 
     /**
