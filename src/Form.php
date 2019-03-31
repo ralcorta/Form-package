@@ -2,9 +2,9 @@
 
 namespace Dvs360\Form;
 
-use Dvs360\Form\Traits\Component;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Dvs360\Form\Traits\Component;
 
 class Form
 {
@@ -14,14 +14,7 @@ class Form
 
     protected $acepted = ['GET', 'POST'];
 
-    protected $parameters;
-
-    protected $request;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
+    protected $standarMethod = 'POST';
 
     /**
      * Create a form input
@@ -33,7 +26,7 @@ class Form
      */
     public function input(array $parameters, $errors = null)
     {
-        return $this->getView('input', $parameters, $errors);
+        return $this->getComponent('input', $parameters, $errors);
     }
 
     /**
@@ -46,7 +39,7 @@ class Form
      */
     public function inputGroup(array $parameters, $errors = null) 
     {
-        return $this->getView('input_group', $parameters, $errors);
+        return $this->getComponent('input_group', $parameters, $errors);
     }    
 
     /**
@@ -59,9 +52,9 @@ class Form
      */
     public function open(array $parameters = [], $errors = null) 
     {
-        $parameters['method'] = $this->refusedMethod($parameters['method'] ?? null);
+        $parameters['method'] = $this->refusedMethod($parameters['method'] ?? $this->standarMethod);
 
-        return $this->getView('form_open', $parameters, $errors);
+        return $this->getComponent('form_open', $parameters, $errors);
     }   
     
     /**
@@ -72,7 +65,7 @@ class Form
      */
     public function close() 
     {
-        return $this->getView('form_close');
+        return $this->getComponent('form_close');
     }   
 
     /**
@@ -85,7 +78,7 @@ class Form
      */
     public function select(array $parameters, $errors = null) 
     {
-        return $this->getView('select', $parameters, $errors);
+        return $this->getComponent('select', $parameters, $errors);
     } 
 
     /**
@@ -98,7 +91,7 @@ class Form
      */
     public function textarea(array $parameters, $errors = null) 
     {
-        return $this->getView('textarea', $parameters, $errors);
+        return $this->getComponent('textarea', $parameters, $errors);
     } 
 
     /**
@@ -111,7 +104,7 @@ class Form
      */
     public function radio(array $parameters, $errors = null) 
     {
-        return $this->getView('radio_checkbox', $parameters + [ 'type' => 'radio'], $errors);
+        return $this->getComponent('radio_checkbox', $parameters + [ 'type' => 'radio'], $errors);
     } 
 
     /**
@@ -124,7 +117,7 @@ class Form
      */
     public function checkbox(array $parameters, $errors = null) 
     {
-        return $this->getView('radio_checkbox', $parameters  + [ 'type' => 'checkbox'], $errors);
+        return $this->getComponent('radio_checkbox', $parameters  + [ 'type' => 'checkbox'], $errors);
     } 
 
     /**
@@ -136,7 +129,7 @@ class Form
      */
     public function button(array $parameters) 
     {
-        return $this->getView('button', $parameters);
+        return $this->getComponent('button', $parameters);
     }
 
     /**
@@ -197,35 +190,37 @@ class Form
      * @param string $method
      * @return array
      */
-    private function refusedMethod($method) 
+    private function refusedMethod($method) : array
     {
         $parameters = array();
-        
-        $reject = $this->refusedInArray($method, $this->refused);
+
+        if( ! $this->isValidMethod($method))
+            return [ 'type' => 'GET' ];
+
+        $isRefused = $this->isRefused($method);
+
+        $method = $this->fixReject($method);
 
         $parameters = [
-            'type' => $reject ? 'POST' : $this->fixReject($method),
+            'type' => $isRefused ? $this->standarMethod : $method,
         ];
 
-        if($reject)
-            $parameters['facade'] = $this->fixReject($reject);
+        if($isRefused)
+            $parameters['facade'] = $method;
         
         return $parameters;
     }
 
     /**
-     * Return a method name if is in refused array, otherway return false
+     * Return true or falseif is in refused array
      *
      * @param [type] $needle
      * @param [type] $refused
      * @return void
      */
-    private function refusedInArray($needle, $refused)
+    private function isRefused(string $method) : bool
     {
-        if(in_array(strtoupper($needle), $refused))
-            return $needle;
-
-        return false;
+        return in_array($this->fixReject($method), $this->refused);
     }
 
     /**
@@ -234,8 +229,21 @@ class Form
      * @param string $reject
      * @return string
      */
-    private function fixReject($reject)
+    private function fixReject($reject) : string
     {
         return strtoupper($reject);
+    }
+
+    /**
+     * Return true or false if the methods pass is valid or not.
+     *
+     * @param string $method
+     * @return boolean
+     */
+    private function isValidMethod(string $method) : bool
+    {
+        $methods = array_merge($this->refused, $this->acepted);
+        
+        return in_array($this->fixReject($method), $methods);
     }
 }
