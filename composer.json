@@ -20,7 +20,7 @@
                 "Dvs360\\Form\\FormServiceProvider"
             ],
             "aliases": {
-                "FormComponent": "Facades\\Dvs360\\Form\\Form"
+                "Form": "Facades\\Dvs360\\Form\\Form"
             }
         }
     }
