@@ -1,7 +1,11 @@
 <input 
     type="{{ $type ?? 'text' }}" 
-    id="{{ $id ?? '' }}" 
-    name="{{ $name }}" 
+    @isset($id)
+        id="{{ $id }}" 
+    @endisset
+    @isset($name)
+        name="{{ $name }}" 
+    @endisset
     class="form-control {{ $class ?? '' }}" 
     value="{{ old($name, $value ?? '') }}"
     placeholder="{{ $placeholder ?? '' }}"
