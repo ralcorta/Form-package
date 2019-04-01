@@ -140,9 +140,17 @@ class Form
      * 
      * @return Illuminate\Support\View
      */
-    public function submit(array $parameters)
+    public function submit(array $parameters, string $tag = 'button')
     {
-        return $this->button(array_merge($parameters, ['type' => 'submit' ]));
+        switch ($tag) {
+            case 'input':
+                return $this->input(array_merge($parameters, ['type' => 'submit' ]));
+                break;
+            
+            default:
+                return $this->button(array_merge($parameters, ['type' => 'submit' ]));
+                break;
+        }
     }
 
     /**
