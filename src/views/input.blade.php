@@ -3,7 +3,9 @@
     @isset($id)
         id="{{ $id }}" 
     @endisset
-    name="{{ $name }}" 
+    @isset($name)
+        name="{{ $name }}" 
+    @endisset
     class="form-control {{ $class ?? '' }}" 
     value="{{ old($name, $value ?? '') }}"
     placeholder="{{ $placeholder ?? '' }}"
