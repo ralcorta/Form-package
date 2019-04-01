@@ -1,4 +1,4 @@
-<div class="from-group @isset($errors) {{ $errors->has($name) ? 'has-error' : '' }} @endisset() {{ $class ?? '' }}" >
+<div class="from-group @isset($errors) {{ $errors->has($name) ? 'has-error' : '' }} @endisset()" >
     @isset($label)
     <label for="{{ $id ?? '' }}">{{ $label }}</label>
     @endisset()
