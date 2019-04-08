@@ -41,7 +41,7 @@
         @endisset
         
     </select>
-    @isset($errors) 
-    <small class="text-danger">{{ $errors->get($name) }}</small>
-    @endisset()
+
+    @include('form::_errors')
+
 </div>

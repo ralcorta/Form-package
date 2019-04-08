@@ -28,7 +28,5 @@
         placeholder="{{ $placeholder ?? '' }}"
         {{ $extra ?? ''}}>{{ $value ?? '' }}</textarea>
 
-    @isset($errors) 
-    <small class="text-danger">{{ $errors->get($name) }}</small>
-    @endisset()
+    @include('form::_errors')
 </div>
