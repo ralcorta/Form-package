@@ -206,6 +206,19 @@ class Form
     }
 
     /**
+     * Create a form date
+     *
+     * @param array $parameters
+     * @param [type] $errors
+     * 
+     * @return Illuminate\Support\View
+     */
+    public function date(array $parameters, $errors = null) 
+    {
+        return $this->getComponent('input', array_merge($parameters , ['type' => 'date']), $errors);
+    } 
+
+    /**
      * Return fixed method if is deferred
      *
      * @param string $method
