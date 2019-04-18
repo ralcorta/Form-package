@@ -28,7 +28,7 @@
 
             @if($options instanceof \Illuminate\Support\Collection || $options instanceof \Illuminate\Database\Eloquent\Collection)
                 @foreach ($options as $option)
-                    <option value="{{ $option->$value }}">{{ $option->$text }}</option>
+                    <option value="{{ $option->$value }}" @if(isset($selected) && $option->$value == $selected) selected @endif>{{ $option->$text }}</option>
                 @endforeach
             @endif
 
