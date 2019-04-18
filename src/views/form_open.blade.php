@@ -4,6 +4,9 @@
     @isset($class)
     class="{{ $class }}"
     @endisset
+    @isset($style)
+    style="{{ $style }}"
+    @endisset
     @isset($accept_charset)
     accept-charset="{{ $accept_charset }}"
     @endisset()
