@@ -1,4 +1,4 @@
-<div class="from-group @isset($errors) {{ $errors->has($name) ? 'has-error' : '' }} @endisset() {{ $class ?? '' }}" >
+<div class="form-group @isset($errors) {{ $errors->has($name) ? 'has-error' : '' }} @endisset() {{ $class ?? '' }}" >
     @isset($label)
     <label  @isset($id) for="{{ $id }}" @endisset >{{ $label }}</label>
     @endisset
@@ -34,7 +34,7 @@
 
             @if(is_array($options))
                 @foreach ($options as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
+                    <option value="{{ $key }}" @if(isset($selected) && $key == $selected) selected @endif>{{ $value }}</option>
                 @endforeach
             @endif
 
