@@ -34,7 +34,7 @@
 
             @if(is_array($options))
                 @foreach ($options as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
+                    <option value="{{ $key }}" @if(isset($selected) && $key == $selected) selected @endif>{{ $value }}</option>
                 @endforeach
             @endif
 
