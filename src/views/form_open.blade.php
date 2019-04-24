@@ -25,6 +25,9 @@
     @if( isset($novalidate) && $novalidate)
     novalidate
     @endif
+    @if( isset($autocomplete) && $autocomplete)
+    autocomplete="{{ $autocomplete }}"
+    @endif
     >
 @if(isset($method) && isset($method['facade'])) 
     <input type="hidden" name="_method" value="{{ $method['facade'] }}">
