@@ -3,7 +3,7 @@
     <label  @isset($id) for="{{ $id }}" @endisset >{{ $label }}</label>
     @endisset
 
-    <select name="{{ $name }}" class="form-control"    
+    <select name="{{ $name }}" class="form-control"
         @isset($id)
         id="{{ $id }}"
         @endisset
@@ -26,6 +26,8 @@
 
         @if($options)
 
+            <option> {{ $messageIfHas ?? '- Seleccione una opción -' }} </option>
+
             @if($options instanceof \Illuminate\Support\Collection || $options instanceof \Illuminate\Database\Eloquent\Collection)
                 @foreach ($options as $option)
                     <option value="{{ $option->$value }}" @if(isset($selected) && $option->$value == $selected) selected @endif>{{ $option->$text }}</option>
@@ -38,8 +40,12 @@
                 @endforeach
             @endif
 
-        @endisset
-        
+        @else
+
+            <option> {{ $messageIfNotHas ?? '- Sin opciónes -' }} </option>
+
+        @endif
+
     </select>
 
     @include('form::_errors')
