@@ -9,15 +9,18 @@
         @include('form::_input_icon')
     @endif
 @endisset
-<input 
-    type="{{ $type ?? 'text' }}" 
+<input
+    type="{{ $type ?? 'text' }}"
     @isset($id)
-        id="{{ $id }}" 
+        id="{{ $id }}"
     @endisset
     @isset($name)
-        name="{{ $name }}" 
+        name="{{ $name }}"
     @endisset
-    class="form-control {{ $class ?? '' }}" 
+    @isset($disabled)
+    disabled
+    @endisset
+    class="form-control {{ $class ?? '' }}"
     value="{{ old($name, $value ?? '') }}"
     placeholder="{{ $placeholder ?? '' }}"
     @isset($maxlength)
