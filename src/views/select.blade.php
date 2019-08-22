@@ -26,7 +26,7 @@
 
         @if($options)
 
-            <option> {{ $messageIfHas ?? '- Seleccione una opción -' }} </option>
+            <option value=""> {{ $messageIfHas ?? '- Seleccione una opción -' }} </option>
 
             @if($options instanceof \Illuminate\Support\Collection || $options instanceof \Illuminate\Database\Eloquent\Collection)
                 @foreach ($options as $option)
@@ -42,7 +42,7 @@
 
         @else
 
-            <option> {{ $messageIfNotHas ?? '- Sin opciónes -' }} </option>
+            <option value=""> {{ $messageIfNotHas ?? '- Sin opciónes -' }} </option>
 
         @endif
 
