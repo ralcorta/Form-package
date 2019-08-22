@@ -29,6 +29,12 @@
     @isset($minlength)
         minlength={{$minlength}}
     @endisset
+    @isset($min)
+        min={{$min}}
+    @endisset
+    @isset($max)
+        max={{$max}}
+    @endisset
     @if(isset($required) && $required)
         required
     @endif
