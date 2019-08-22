@@ -2,8 +2,6 @@
     @isset($label)
     <label for="{{ $id ?? '' }}">{{ $label }}</label>
     @endisset()
-   
-    @include('form::input')
 
-    @include('form::_errors')
+    @include('form::input')
 </div>
