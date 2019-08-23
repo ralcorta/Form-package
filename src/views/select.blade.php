@@ -30,13 +30,13 @@
 
             @if($options instanceof \Illuminate\Support\Collection || $options instanceof \Illuminate\Database\Eloquent\Collection)
                 @foreach ($options as $option)
-                    <option value="{{ $option->$value }}" @if(isset($selected) && $option->$value == $selected) selected @endif>{{ $option->$text }}</option>
+                    <option value="{{ $option->$value }}" @if((isset($selected) && $option->$value == $selected) || (isset($name) &&  $option->$value == old($name))) selected @endif>{{ $option->$text }}</option>
                 @endforeach
             @endif
 
             @if(is_array($options))
                 @foreach ($options as $key => $value)
-                    <option value="{{ $key }}" @if(isset($selected) && $key == $selected) selected @endif>{{ $value }}</option>
+                    <option value="{{ $key }}" @if((isset($selected) && $key == $selected) || (isset($name) && $key == old($name))) selected @endif>{{ $value }}</option>
                 @endforeach
             @endif
 
