@@ -1,6 +1,11 @@
 <div class="form-group @isset($errors) {{ $errors->has($name) ? 'has-error' : '' }} @endisset() {{ $class ?? '' }}" >
     @isset($label)
-    <label  @isset($id) for="{{ $id }}" @endisset >{{ $label }}</label>
+    <label  @isset($id) for="{{ $id }}" @endisset >
+        {{ $label }}
+        @if(isset($required) && $required)
+        <b>*</b>
+        @endif
+    </label>
     @endisset
 
     <select name="{{ $name }}" class="form-control"
